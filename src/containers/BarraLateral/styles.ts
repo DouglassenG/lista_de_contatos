@@ -12,6 +12,13 @@ export const Filtros = styled.div`
   grid-gap: 18px;
   margin-top: 56px;
 `
+
+export const TituloBarraLateral = styled.h2`
+  color: #fff;
+  margin-bottom: 18px;
+  margin-top: 8px;
+`
+
 export const Campo = styled.input`
   padding: 8px;
   background-color: #fff;

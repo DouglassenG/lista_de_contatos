@@ -1,7 +1,8 @@
 import Contato from '../../components/Contato'
+import { Container } from './styles'
 
 const ListaDeContatos = () => (
-  <main>
+  <Container>
     <p>2 tarefas marcadas como: &quot;categoria&quot; e &quot;termo&quot;</p>
     <ul>
       <li>
@@ -14,7 +15,7 @@ const ListaDeContatos = () => (
         <Contato />
       </li>
     </ul>
-  </main>
+  </Container>
 )
 
 export default ListaDeContatos
