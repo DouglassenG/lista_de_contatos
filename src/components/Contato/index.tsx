@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import * as S from './styles'
 
-const Contato = () => {
+type Props = {
+  nome: string
+  email: string
+  telefone: number
+}
+
+const Contato = ({ nome, email, telefone }: Props) => {
   const [estaEditando, setEstaEditando] = useState(false)
   return (
     <S.Card>
-      <S.Titulo>Nome do contato</S.Titulo>
-      <S.Tag>Favoritos</S.Tag>
-      <S.Tag>Normal</S.Tag>
-      <S.Descricao />
+      <S.Titulo>{nome}</S.Titulo>
+      <S.Descricao>{telefone}</S.Descricao>
+      <S.Descricao>{email}</S.Descricao>
       <S.BarraAcoes>
         {estaEditando ? (
           <>
