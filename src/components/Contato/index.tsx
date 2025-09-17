@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
@@ -8,19 +8,36 @@ import ContatoClass from '../../models/Contato'
 
 type Props = ContatoClass
 
-const Contato = ({ nome, email, telefone, id }: Props) => {
+const Contato = ({ nome, email, telefone: telefoneOriginal, id }: Props) => {
   const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
+  const [telefone, setTelefone] = useState('')
+
+  useEffect(() => {
+    if (telefoneOriginal > 0) {
+      setTelefone(String(telefoneOriginal))
+    }
+  }, [telefoneOriginal])
+
   return (
     <S.Card>
       <S.Titulo>{nome}</S.Titulo>
-      <S.Descricao>{telefone}</S.Descricao>
+      <S.Descricao
+        disabled={!estaEditando}
+        value={telefone}
+        onChange={(evento) => setTelefone(evento.target.value)}
+      />
       <S.Descricao>{email}</S.Descricao>
       <S.BarraAcoes>
         {estaEditando ? (
           <>
             <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoCancelarRemover onClick={() => setEstaEditando(false)}>
+            <S.BotaoCancelarRemover
+              onClick={() => {
+                setEstaEditando(false)
+                setTelefone(String(telefoneOriginal))
+              }}
+            >
               Cancelar
             </S.BotaoCancelarRemover>
           </>
