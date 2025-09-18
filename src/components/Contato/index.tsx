@@ -3,21 +3,39 @@ import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
 
-import { remover } from '../../store/reducers/contatos'
+import { remover, editar } from '../../store/reducers/contatos'
 import ContatoClass from '../../models/Contato'
 
 type Props = ContatoClass
 
-const Contato = ({ nome, email, telefone: telefoneOriginal, id }: Props) => {
+const Contato = ({
+  nome,
+  email: emailOriginal,
+  telefone: telefoneOriginal,
+  id
+}: Props) => {
   const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
+  const [email, setEmail] = useState('')
   const [telefone, setTelefone] = useState('')
 
   useEffect(() => {
-    if (telefoneOriginal > 0) {
-      setTelefone(String(telefoneOriginal))
+    if (telefoneOriginal > '') {
+      setTelefone(telefoneOriginal)
     }
   }, [telefoneOriginal])
+
+  useEffect(() => {
+    if (emailOriginal > '') {
+      setEmail(emailOriginal)
+    }
+  }, [emailOriginal])
+
+  function cancelarEdicao() {
+    setEstaEditando(false)
+    setTelefone(String(telefoneOriginal))
+    setEmail(emailOriginal)
+  }
 
   return (
     <S.Card>
@@ -27,17 +45,30 @@ const Contato = ({ nome, email, telefone: telefoneOriginal, id }: Props) => {
         value={telefone}
         onChange={(evento) => setTelefone(evento.target.value)}
       />
-      <S.Descricao>{email}</S.Descricao>
+      <S.Descricao
+        disabled={!estaEditando}
+        value={email}
+        onChange={(evento) => setEmail(evento.target.value)}
+      />
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoCancelarRemover
+            <S.BotaoSalvar
               onClick={() => {
+                dispatch(
+                  editar({
+                    nome,
+                    email,
+                    telefone,
+                    id
+                  })
+                )
                 setEstaEditando(false)
-                setTelefone(String(telefoneOriginal))
               }}
             >
+              Salvar
+            </S.BotaoSalvar>
+            <S.BotaoCancelarRemover onClick={cancelarEdicao}>
               Cancelar
             </S.BotaoCancelarRemover>
           </>
