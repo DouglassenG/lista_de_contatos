@@ -1,10 +1,12 @@
+import BarraLateral from '../../containers/BarraLateral'
+import Formulario from '../../containers/Formulario'
+
 const Cadastro = () => (
-  <form>
-    <input type="text" placeholder="Nome" />
-    <input type="email" placeholder="Email" />
-    <input type="number" placeholder="Telefone" />
-    <button>Salvar</button>
-  </form>
+  <>
+    {/* Barra lateral */}
+    <BarraLateral />
+    <Formulario />
+  </>
 )
 
 export default Cadastro

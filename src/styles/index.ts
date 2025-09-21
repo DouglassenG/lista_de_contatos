@@ -15,4 +15,10 @@ export const Container = styled.div`
   grid-template-columns: 224px auto;
 `
 
+export const MainContainer = styled.main`
+  padding: 0 40px;
+  height: 100vh;
+  overflow-y: scroll;
+`
+
 export default EstiloGlobal
