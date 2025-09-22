@@ -17,7 +17,7 @@ const Formulario = () => {
 
   const cadastrarContato = (evento: FormEvent) => {
     evento.preventDefault()
-    const contatoParaAdicionar = new Contato(titulo, email, telefone, 9)
+    const contatoParaAdicionar = new Contato(titulo, email, telefone, 1)
     dispatch(cadastrar(contatoParaAdicionar))
     navigate('/')
   }
