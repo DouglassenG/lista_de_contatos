@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as S from './styles'
 import { RootReducer } from '../../store'
 import { alterarTermo } from '../../store/reducers/filtro'
+import { Campo } from '../../styles'
 
 const BarraLateral = () => {
   const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const BarraLateral = () => {
     <S.Aside>
       <div>
         <S.TituloBarraLateral>Lista de contatos</S.TituloBarraLateral>
-        <S.Campo
+        <Campo
           type="text"
           placeholder="Buscar"
           value={termo}
